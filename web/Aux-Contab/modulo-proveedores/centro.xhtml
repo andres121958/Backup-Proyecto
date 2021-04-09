@@ -42,12 +42,14 @@
                 </div>
                 <!-- /.card -->
             </h:form>
+
+            <!-- Main content -->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Listado de proveedores</h3>
+                                <h3 class="card-title">Listado de Proveedores</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -68,45 +70,75 @@
                                                 <tr>
                                                     <td>#{proveedores.nit}</td>
                                                     <td>
-                                                        <h:inputText value="#{proveedores.razonSocial}"/>
+                                                        <h:inputText value="#{proveedores.razonSocial}"></h:inputText>
                                                     </td>
                                                     <td>
-                                                        <h:inputText value="#{proveedores.ciudad}"/>
+                                                        <h:inputText value="#{proveedores.ciudad}"></h:inputText>
                                                     </td>
                                                     <td>
-                                                        <h:inputText value="#{proveedores.calle}"/>
+                                                        <h:inputText value="#{proveedores.calle}"></h:inputText>
                                                     </td>
                                                     <td>
-                                                        <h:inputText style="widht: 2px"  value="#{proveedores.zona}"/>
+                                                        <h:inputText value="#{proveedores.zona}"></h:inputText>
                                                     </td>
                                                     <td>
                                                         <div class="container">
                                                             <h:commandButton class="btn btn-danger"
                                                                              value="Eliminar"
-                                                                             action="#{proveedoresView.eliminarProveedor(proveedores)}"/>&nbsp;
-                                                            <h:commandButton class="btn btn-warning"
-                                                                             value="Actualizar"
-                                                                             action="#{proveedoresView.editarProveedor(proveedores)}"/>
+                                                                             action="#{proveedoresView.eliminarProveedor(proveedores)}"/> 
                                                         </div>
+                                                        <br></br>
+                                                        <h:commandButton class="btn btn-warning"
+                                                                         value="Actualizar"
+                                                                         action="#{proveedoresView.editarProveedor(proveedores)}"/>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
-
                                         </tbody>
                                         <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Producto</th>
+                                                <th>Estado del pedido</th>
+                                                <th>Cantidad</th>                                                
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </tfoot>                                          
+                                    </table>                                    
+                                </h:form> 
+
+                                <!-- Tabla para exportar -->
+                                <h:form>
+                                    <table id="example" class="table" style="display: none">
+                                        <thead>
                                             <tr>
                                                 <th>NIT</th>
                                                 <th>Razon Social</th>
                                                 <th>Ciudad</th>
                                                 <th>Calle</th>
                                                 <th>Zona</th>
-                                                <th>Acciones</th>
                                             </tr>
-                                        </tfoot>
-                                    </table>
-                                    <div class="container">
-                                        <button type="button" onclick="tableToExcel('example1', 'Lista proveedores')" value="Export to Excel" class="btn btn-success">Exportar Excel</button>
-                                    </div>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="#{proveedoresView.listaProveedores}" var="proveedores">
+                                                <tr>
+                                                    <td>#{proveedores.nit}</td>
+                                                    <td>#{proveedores.razonSocial}</td>
+                                                    <td>#{proveedores.ciudad}</td>
+                                                    <td>#{proveedores.calle}</td>
+                                                    <td>#{proveedores.zona}</td>                                                    
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Producto</th>
+                                                <th>Estado del pedido</th>
+                                                <th>Cantidad</th>                                                
+                                            </tr>
+                                        </tfoot>                                          
+                                    </table>                                    
                                 </h:form>
                             </div>
                             <!-- /.card-body -->
@@ -117,9 +149,6 @@
                 </div>
                 <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-
-            <!-- /.content -->
         </div>
 
     </ui:composition>
